@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %} Operations Guide {% endblock %}
+
+{% block content %}
+<div class="row modal fade" id="componentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add to Component Inventory</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br/>
+        </div>
+        <div class="modal-body">
+          <form action='{{url_for("update_component")}}' method="post">
+
+            <div class="mb-3">
+              <label for="client-name" class="col-form-label">Component: &nbsp;&nbsp;</label>
+                <select class="custom-select" id="inlineFormCustomSelect" name="component-id">
+                    <option selected>Choose...</option>
+                    {% for component in components %}
+                        <option value={{component.component_id}}> {{component.component_desc}} </option>
+                    {% endfor %}
+                </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="quantity" class="col-form-label">Quantity:</label>
+              <input type="number" class="form-control" id="quantity" name="quantity">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row modal fade" id="sensorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add to Sensor Inventory</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button><br/>
+        </div>
+        <div class="modal-body">
+          <form action='{{url_for("update_sensor")}}' method="post">
+
+            <div class="mb-3">
+              <label for="client-name" class="col-form-label">Component: &nbsp;&nbsp;</label>
+                <select class="custom-select" id="inlineFormCustomSelect" name="sensor-id">
+                    <option selected>Choose...</option>
+                    {% for sensor in sensors %}
+                        <option value={{sensor.sensor_id}}> {{sensor.sensor_desc}} </option>
+                    {% endfor %}
+                </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="quantity" class="col-form-label">Quantity:</label>
+              <input type="number" class="form-control" id="quantity" name="quantity">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<br/><br/><br/>
+<div class="row">
+    <div class="mx-auto col-xs-6" style="width: 800px;">
+        <div class="row">
+            <div class="col-md-8 d-flex ">
+                <h1>Procurement Guide</h1>
+            </div>
+            <div class="col-md-4 d-flex">
+                <button type="button" style="width: 200px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#componentModal"  style="background-color: #87b39d; border-color: #87b39d;">Add Components to Inventory</button>
+            </div>
+          </div>
+
+        <br/>
+        <table class="table table-striped table-hover text-center" margin="20px">
+            <thead>
+            <tr>
+                <th scope="col" style="width: 50px">ID</th>
+                <th scope="col" style="width: 300px">Component Description</th>
+                <th scope="col" style="width: 300px">Sensor</th>
+                <th scope="col" style="width: 150px">Total Quantity for Purchase</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for component in components %}
+                <tr>
+                    <th scope="row"> {{component.component_id}} </th>
+                    <td> {{component.component_desc}} </td>
+                    <td> 
+                        {% if component.sensor_id == 1 %}
+                            Temperature Sensor
+                        {% elif component.sensor_id == 2 %}
+                            Relative Humidity Sensor
+                        {% elif component.sensor_id ==3 %}
+                            Pressure Sensor
+                        {% elif component.sensor_id == 4 %}
+                            Magnetic Field Sensor
+                        {% endif %}
+                    </td>
+                    <td> 
+                        {% if component.component_id == 1 %}
+                            {{ comp_quantity[0] }}
+                        {% elif component.component_id == 2 %}
+                            {{ comp_quantity[1] }}
+                        {% elif component.component_id == 3 %}
+                            {{ comp_quantity[2] }}
+                        {% elif component.component_id == 4 %}
+                            {{ comp_quantity[3] }}
+                        {% elif component.component_id == 5 %}
+                            {{ comp_quantity[4] }}
+                        {% elif component.component_id == 6 %}
+                            {{ comp_quantity[5] }}
+                        {% elif component.component_id == 7 %}
+                            {{ comp_quantity[6] }}
+                        {% elif component.component_id == 8 %}
+                            {{ comp_quantity[7] }}
+                        {% elif component.component_id == 9 %}
+                            {{ comp_quantity[8] }}
+                        {% elif component.component_id == 10 %}
+                            {{ comp_quantity[9] }}
+                        {% elif component.component_id == 11 %}
+                            {{ comp_quantity[10] }}
+                        {% elif component.component_id == 12 %}
+                            {{ comp_quantity[11] }}
+                        {% elif component.component_id == 13 %}
+                            {{ comp_quantity[12] }}
+                        {% elif component.component_id == 14 %}
+                            {{ comp_quantity[13] }}
+                        {% elif component.component_id == 15 %}
+                            {{ comp_quantity[14] }}
+                        {% elif component.component_id == 16 %}
+                            {{ comp_quantity[15] }}
+                        {% endif%}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="mx-auto col-xs-6" style="width: 850px;">
+        <div class="row">
+            <div class="col-md-8 d-flex ">
+                <h1>Production Guide</h1>
+            </div>
+            <div class="col-md-4 d-flex">
+                <button type="button" style="width: 200px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sensorModal" data-bs-whatever="@mdo" style="background-color: #87b39d; border-color: #87b39d;">Add Sensors to Inventory</button>
+            </div>
+          </div>
+
+        <br/>
+        <table class="table table-striped table-hover text-center" margin="20px">
+            <thead>
+            <tr>
+                <th scope="col" style="width: 50px">ID</th>
+                <th scope="col" style="width: 400px">Sensor Description</th>
+                <th scope="col" style="width: 200px">Total Needed for All Orders</th>
+                <th scope="col" style="width: 200px">Total Quantity for Production</th>
+                <th scope="col" style="width: 200px">Producible Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for sensor in sensors %}
+                <tr>
+                    <th scope="row"> {{ sensor.sensor_id }} </th>
+                    <td> {{ sensor.sensor_desc }} </td>
+                    <td> 
+                        {% if sensor.sensor_id == 1 %}
+                            {{ sensor_total[0] }}
+                        {% elif sensor.sensor_id == 2 %}
+                            {{ sensor_total[1] }}
+                        {% elif sensor.sensor_id == 3 %}
+                            {{ sensor_total[2] }}
+                        {% elif sensor.sensor_id == 4 %}
+                            {{ sensor_total[3] }}
+                        {% endif%}
+                    </td>
+                    <td> 
+                        {% if sensor.sensor_id == 1 %}
+                            {{ sensor_prod[0] }}
+                        {% elif sensor.sensor_id == 2 %}
+                            {{ sensor_prod[1] }}
+                        {% elif sensor.sensor_id == 3 %}
+                            {{ sensor_prod[2] }}
+                        {% elif sensor.sensor_id == 4 %}
+                            {{ sensor_prod[3] }}
+                        {% endif%}
+                    </td>
+                    <td> 
+                        {% if sensor.sensor_id == 1 %}
+                            {{ sensor_make[0] }}
+                        {% elif sensor.sensor_id == 2 %}
+                            {{ sensor_make[1] }}
+                        {% elif sensor.sensor_id == 3 %}
+                            {{ sensor_make[2] }}
+                        {% elif sensor.sensor_id == 4 %}
+                            {{ sensor_make[3] }}
+                        {% endif%}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+        <br/><br/><b>Total Needed for All Orders - </b> Number of sensors needed to fulfill all orders
+        <br/><b>Total Quantity for Production - </b> Number of sensors to be produced (total number needed to fulfill all orders less inventory quantity)
+        <br/><b>Producible Quantity - </b> Number of sensors that can be produced given current component inventory
+    </div>
+</div>
+{% endblock %}

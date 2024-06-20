@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content%}
+<br/><br/></br></br></br></br>
+<div class="row mx-auto" style="width: 1500px;">
+    <div class="col-sm-4 mb-3 mb-sm-0 col-centered">
+      <div class="card  h-100" >
+        <div class="card-body">
+          <h5 class="card-title">Order Management</h5>
+          <ul>
+            <li class="card-text">Displays a comprehensive list of current and past orders.</li>
+            <li class="card-text">Allows users to add new orders.</li>
+            <li class="card-text">Notifies users when an order is ready.</li>
+            <li class="card-text">Provides an option to dispatch (i.e., deliver) orders to clients.</li>
+          </ul>
+          
+          <a href="orders" class="btn btn-primary" style="background-color: #87b39d; border-color: #87b39d;">Go to Orders</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-centered">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Component Inventory Managmenet</h5>
+          <ul>
+            <li class="card-text">Shows the current count of raw materials.</li>
+            <li class="card-text">Enables users to add new supplies to the inventory.</li>
+            <li class="card-text">Updates automatically when sensors are produced, reflecting the subtraction of raw materials used in their creation.</li>
+          </ul>
+          <a href="raw_inv" class="btn btn-primary" style="background-color: #87b39d; border-color: #87b39d;">Go to Component Inventory</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-centered">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Sensor Inventory Management</h5>
+            <ul>
+                <li class="card-text">Displays the current stock of completed sensors.</li>
+                <li class="card-text">Allows users to add newly produced sensors to the inventory.</li>
+                <li class="card-text">Updates automatically when the "Dispatch" button is triggered on the Orders page, reflecting the decrease in completed inventory.</li>
+              </ul>
+            <a href="completed_inv" class="btn btn-primary" style="background-color: #87b39d; border-color: #87b39d;">Go to Sensor Inventory</a>
+          </div>
+        </div>
+    </div> 
+  </div>
+{% endblock %}

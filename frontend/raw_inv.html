@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} Raw Inventory {% endblock %}
+
+{% block content %}
+<br/><br/><br/>
+
+<div class="row mx-auto" style="width: 975px;">
+    <h1 class="text-center">Component Inventory</h1> 
+    <table class="table table-striped table-hover text-center" margin="20px">
+        <thead>
+        <tr>
+            <th scope="col" style="width: 50px">ID</th>
+            <th scope="col" style="width: 100px">Category</th>
+            <th scope="col" style="width: 300px">Description</th>
+            <th scope="col" style="width: 75px">Quantity</th>
+            <th scope="col" style="width: 300px">Sensor</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for component in components %}
+            <tr>
+                <th scope="row"> {{component.component_id}} </th>
+                <td> {{component.component_cat}} </td>
+                <td> {{component.component_desc}} </td>
+                <td> {{component.quantity}} </td>
+                <td> {{component.sensor.sensor_desc}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

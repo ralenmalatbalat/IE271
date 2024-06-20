@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} Completed Inventory {% endblock %}
+
+
+{% block content %}
+<br/><br/><br/>
+
+<div class="row mx-auto" style="width: 650px;">
+    <h1 class="text-center">Sensor Inventory</h1>
+    <table class="table table-striped table-hover text-center" margin="20px">
+        <thead>
+        <tr>
+            <th scope="col" style="width: 50px">ID</th>
+            <th scope="col" style="width: 300px">Sensor Description</th>
+            <th scope="col" style="width: 100px">Quantity</th>
+            <th scope="col" style="width: 200px">Kit</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for sensor in sensors %}
+            <tr>
+                <th scope="row"> {{sensor.sensor_id}} </th>
+                <td> {{sensor.sensor_desc}} </td>
+                <td> {{sensor.quantity}} </td>
+                <td>
+                    {% for kit in kits %}
+                        {% for map in kit.sensors %} 
+                            {% if map.sensor_id == sensor.sensor_id %}
+                                {{ kit.kit_desc }} / 
+                            {% endif %}
+                        {% endfor%}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
